@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Collision", "Collision\Coll
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RailingCreat", "RailingCreat\RailingCreat.csproj", "{52D55B10-95E1-4ACC-8B83-89FE978DB04C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolidPractise", "SolidPractise\SolidPractise.csproj", "{0861E7CB-5977-411C-AA2D-E57FDDB677FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GridPractise", "GridPractise\GridPractise.csproj", "{4E5CA724-CA20-49A9-8AAC-114036FB47B6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{52D55B10-95E1-4ACC-8B83-89FE978DB04C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52D55B10-95E1-4ACC-8B83-89FE978DB04C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52D55B10-95E1-4ACC-8B83-89FE978DB04C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0861E7CB-5977-411C-AA2D-E57FDDB677FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0861E7CB-5977-411C-AA2D-E57FDDB677FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0861E7CB-5977-411C-AA2D-E57FDDB677FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0861E7CB-5977-411C-AA2D-E57FDDB677FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E5CA724-CA20-49A9-8AAC-114036FB47B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E5CA724-CA20-49A9-8AAC-114036FB47B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E5CA724-CA20-49A9-8AAC-114036FB47B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E5CA724-CA20-49A9-8AAC-114036FB47B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
