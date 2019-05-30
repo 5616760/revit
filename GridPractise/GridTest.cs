@@ -26,14 +26,14 @@ namespace GridPractise {
                     XYZ normal1 = line1.Direction;
                     XYZ normal2 = line2.Direction;
                     if (normal1.IsAlmostEqualTo(normal2)) {
-                        continue;
+                        continue;//如果平行，执行下一条
                     }
 
                     SetComparisonResult intRst = line1.Intersect(line2, out IntersectionResultArray results);
                     if (intRst == SetComparisonResult.Overlap && results.Size == 1) {
                         XYZ tp = results.get_Item(0).XYZPoint;
                         if (intXyzs.Where(m => m.IsAlmostEqualTo(tp)).Count() == 0) {
-                            intXyzs.Add(tp);
+                            intXyzs.Add(tp);//如果不重复，则添加该交点
                         }
                     }
                 }
