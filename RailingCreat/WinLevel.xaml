@@ -1,0 +1,20 @@
+﻿<Window x:Class="RailingCreat.WinLevel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RailingCreat"
+             mc:Ignorable="d" 
+             d:DesignHeight="260"  d:DesignWidth="150" WindowStartupLocation="CenterScreen">
+    <Grid>
+            <StackPanel>
+            <Label Margin="5 5 5 0" x:Name="Tip">请选择轨道放置表高</Label>
+            <ComboBox x:Name="cbLev" Margin="10 3"></ComboBox>
+            <Label Margin="5 0" x:Name="Tip2">请选择钢轨样式</Label>
+            <ComboBox x:Name="cbGangGui" Margin="10 3"></ComboBox>
+            <Label Margin="5 0" x:Name="Tip3">请选择轨枕样式</Label>
+            <ComboBox x:Name="cbGuiZhen" Margin="10 3"></ComboBox>
+            <Button x:Name="btOK" Margin="10 20" Click="BtOK_OnClick">选择线路中心线</Button>
+        </StackPanel>
+    </Grid>
+</Window>
