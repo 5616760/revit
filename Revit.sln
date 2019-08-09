@@ -35,6 +35,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EWpf", "EWpf\EWpf.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamilyCteate1", "FamilyCteate1\FamilyCteate1.csproj", "{F7E6826C-2CBB-4F60-AD8C-A043B43028FC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tunnel", "Tunnel\Tunnel.csproj", "{42FB7876-D007-4A46-ACC4-5191751D367D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -105,6 +107,10 @@ Global
 		{F7E6826C-2CBB-4F60-AD8C-A043B43028FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7E6826C-2CBB-4F60-AD8C-A043B43028FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7E6826C-2CBB-4F60-AD8C-A043B43028FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42FB7876-D007-4A46-ACC4-5191751D367D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42FB7876-D007-4A46-ACC4-5191751D367D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42FB7876-D007-4A46-ACC4-5191751D367D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42FB7876-D007-4A46-ACC4-5191751D367D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
