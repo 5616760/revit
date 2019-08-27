@@ -1,0 +1,103 @@
+﻿<Window x:Class="Tunnel.TWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Tunnel"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="500" Title="地铁盾构区间参数设置" ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="1.5*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBlock VerticalAlignment="Center" Margin="15 0">隧道外径(m):</TextBlock>
+            <TextBox TextChanged="TextBoxR_TextChanged" x:Name="TextBoxR" VerticalAlignment="Center" Width="65" TextAlignment="Center">4.8</TextBox>
+        </StackPanel>
+        <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBlock VerticalAlignment="Center" Margin="15 0">管片厚度(m):</TextBlock>
+            <TextBox TextChanged="TextBoxR_TextChanged" x:Name="TextBoxH" VerticalAlignment="Center" Width="65" TextAlignment="Center">0.3</TextBox>
+        </StackPanel>
+        <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBlock VerticalAlignment="Center" Margin="15 0">管片宽度(m):</TextBlock>
+            <TextBox TextChanged="TextBoxR_TextChanged" x:Name="TextBoxW" VerticalAlignment="Center" Width="65" TextAlignment="Center">2.5</TextBox>
+        </StackPanel>
+        <StackPanel Grid.Column="0" Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBlock VerticalAlignment="Center" Margin="15 0">错缝类型:</TextBlock>
+            <ComboBox x:Name="ComboBoxCuoFeng" Height="25" Width="65" HorizontalAlignment="Center">
+                <ComboBoxItem HorizontalAlignment="Center">0</ComboBoxItem>
+                <ComboBoxItem HorizontalAlignment="Center">1</ComboBoxItem>
+                <ComboBoxItem HorizontalAlignment="Center">2</ComboBoxItem>
+                <ComboBoxItem HorizontalAlignment="Center">3</ComboBoxItem>
+                <ComboBoxItem HorizontalAlignment="Center">4</ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Column="0" Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBlock VerticalAlignment="Center" Margin="15 0">螺栓个数:</TextBlock>
+            <TextBox TextChanged="TextBoxR_TextChanged" x:Name="TextBoxLSGS" VerticalAlignment="Center" Width="65" HorizontalAlignment="Center" TextAlignment="Center">10</TextBox>
+        </StackPanel>
+        <StackPanel Grid.Column="0" Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBlock VerticalAlignment="Center" Margin="15 0">管片类型:</TextBlock>
+            <ComboBox Height="25" Width="140" x:Name="GuanPian">
+            </ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Row="6" Orientation="Horizontal">
+            <Button Width="110" Margin="15 13 5 13" x:Name="ButtonPick" Click="ButtonPick_Click">选择线路坐标表...</Button>
+            <Label VerticalAlignment="Center" HorizontalAlignment="Right">已选坐标数:</Label>
+            <Label VerticalAlignment="Center" HorizontalAlignment="Left" x:Name="LabelNum">0</Label>
+        </StackPanel>
+        <GroupBox Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" Margin="5" Header="管片圆弧角度参数（前）">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock VerticalAlignment="Center" Margin="15 0">标准块角度(°):</TextBlock>
+                    <TextBox TextChanged="TextBoxR_TextChanged" x:Name="BZK1" VerticalAlignment="Center" Width="65" HorizontalAlignment="Center" TextAlignment="Center">72</TextBox>
+                </StackPanel>
+                <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock VerticalAlignment="Center" Margin="15 0">邻接块外弧(°):</TextBlock>
+                    <TextBox TextChanged="TextBoxR_TextChanged" x:Name="LJKW1" VerticalAlignment="Center" Width="65" HorizontalAlignment="Center" TextAlignment="Center">63</TextBox>
+                </StackPanel>
+                <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock VerticalAlignment="Center" Margin="15 0">邻接块内弧(°):</TextBlock>
+                    <TextBox TextChanged="TextBoxR_TextChanged" x:Name="LJKN1" VerticalAlignment="Center" Width="65" HorizontalAlignment="Center" TextAlignment="Center">62</TextBox>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+        <GroupBox Grid.Column="1" Grid.Row="3" Grid.RowSpan="3" Margin="5" Header="管片圆弧角度参数（后）">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock VerticalAlignment="Center" Margin="15 0">标准块角度(°):</TextBlock>
+                    <TextBox TextChanged="TextBoxR_TextChanged" x:Name="BZK2" VerticalAlignment="Center" Width="65" HorizontalAlignment="Center" TextAlignment="Center">72</TextBox>
+                </StackPanel>
+                <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock VerticalAlignment="Center" Margin="15 0">邻接块外弧(°):</TextBlock>
+                    <TextBox TextChanged="TextBoxR_TextChanged" x:Name="LJKW2" VerticalAlignment="Center" Width="65" HorizontalAlignment="Center" TextAlignment="Center">68</TextBox>
+                </StackPanel>
+                <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock VerticalAlignment="Center" Margin="15 0">邻接块内弧(°):</TextBlock>
+                    <TextBox TextChanged="TextBoxR_TextChanged" x:Name="LJKN2" VerticalAlignment="Center" Width="65" HorizontalAlignment="Center" TextAlignment="Center">67</TextBox>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+        <Button Grid.Column="1" Grid.Row="6" Width="110" Margin="15 13" x:Name="ButtonRun" Click="ButtonRun_Click">生成区间模型</Button>
+    </Grid>
+</Window>
