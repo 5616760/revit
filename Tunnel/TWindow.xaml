@@ -98,6 +98,9 @@
                 </StackPanel>
             </Grid>
         </GroupBox>
-        <Button Grid.Column="1" Grid.Row="6" Width="110" Margin="15 13" x:Name="ButtonRun" Click="ButtonRun_Click">生成区间模型</Button>
+        <StackPanel Grid.Column="1" Grid.Row="6"  Orientation="Vertical">
+            <Button Width="110" Margin="15 13 15 2" x:Name="ButtonRun" Click="ButtonRun_Click">生成区间模型</Button>
+            <ProgressBar Margin="15 5" Height="5" x:Name="ProgressBar1" IsIndeterminate="True"></ProgressBar>
+        </StackPanel>
     </Grid>
 </Window>

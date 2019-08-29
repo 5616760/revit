@@ -3,7 +3,10 @@ using Autodesk.Revit.UI;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using System.Windows;
+using System.Windows.Threading;
 
 namespace Tunnel {
     public static class Tools {
@@ -36,7 +39,22 @@ namespace Tunnel {
             XYZ[] PT = new XYZ[ptXyzs1.Length];
 
             for (int i = 0; i < ptXyzs1.Length; i++) {
-                PT[i] = transform.OfPoint(ptXyzs1[i]);
+                double x = ptXyzs1[i].X;
+                double y = ptXyzs1[i].Y;
+                double z = ptXyzs1[i].Z;
+
+                //transform basis of the old coordinate system in the new coordinate // system
+                XYZ b0 = transform.get_Basis(0);
+                XYZ b1 = transform.get_Basis(1);
+                XYZ b2 = transform.get_Basis(2);
+                XYZ origin = transform.Origin;
+
+                //transform the origin of the old coordinate system in the new 
+                //coordinate system
+                double xTemp = x * b0.X + y * b1.X + z * b2.X + origin.X;
+                double yTemp = x * b0.Y + y * b1.Y + z * b2.Y + origin.Y;
+                double zTemp = x * b0.Z + y * b1.Z + z * b2.Z + origin.Z;
+                PT[i] = new XYZ(xTemp, yTemp, zTemp);
             }
             return PT;
         }
@@ -65,11 +83,11 @@ namespace Tunnel {
             double a61 = a51 + ljkAngle;
 
             List<double> list = new List<double> {
-                a11,a2,a21,a3,a31,a4,a41,a5,a51,a6,a61,a1,a11
+                a11,a2,a21,a21,a3,a31,a31,a4,a41,a41,a5,a51,a51,a6,a61,a61,a1,a11
             };
-            XYZ[] xyzs = new XYZ[13];
+            XYZ[] xyzs = new XYZ[list.Count];
             for (int i = 0; i < list.Count; i++) {
-                xyzs[i] = new XYZ(r * Math.Cos(list[i]), r * Math.Sin(list[i]), 0);
+                xyzs[i] = new XYZ(0, r * Math.Sin(list[i]),  r * Math.Cos(list[i]));
             }
             return xyzs;
         }
@@ -104,6 +122,8 @@ namespace Tunnel {
         /// </summary>
         /// <param name="quWindow"></param>
         public static void CreateTunnel(TWindow quWindow) {
+            Stopwatch sw=new Stopwatch();
+            sw.Start();
             double r = SToD(quWindow.TextBoxR.Text) * 1000 / 304.8;
             double h = SToD(quWindow.TextBoxH.Text) * 1000 / 304.8;
             double w = SToD(quWindow.TextBoxW.Text) * 1000 / 304.8;
@@ -130,40 +150,48 @@ namespace Tunnel {
                 XYZ[] ptXyzs2 = GetDivPoint(r - h, BZK1, LJKN1, 0);
                 XYZ[] ptXyzs3 = GetDivPoint(r, BZK2, LJKW2, 0);
                 XYZ[] ptXyzs4 = GetDivPoint(r - h, BZK2, LJKN2, 0);
-
-                for (int i = 0; i < 2 - 1; i++) {
+                int numOfGuanPian = n;
+                
+                for (int i = 0; i < numOfGuanPian - 1; i++) {
                     Line line = Line.CreateBound(ptlist[i], ptlist[i + 1]);
-                    Transform transform1 = line.ComputeDerivatives(0, true);
-                    //Transform transform2 = line.ComputeDerivatives(1, true);
+                    Transform transform1 = line.ComputeDerivatives(0, false);
+                    Transform transform11 = Transform.CreateTranslation(ptlist[i]);
+                    var a=transform11.BasisZ;
+                    Transform transform2 = line.ComputeDerivatives(1, false);
+                    Transform transform22 = Transform.CreateTranslation(ptlist[i+1]);
+                    XYZ[] ptXyzs11 = TranPts(transform11, ptXyzs1);
+                    XYZ[] ptXyzs22 = TranPts(transform11, ptXyzs2);
+                    XYZ[] ptXyzs33 = TranPts(transform22, ptXyzs3);
+                    XYZ[] ptXyzs44 = TranPts(transform22, ptXyzs4);
 
-                    XYZ[] ptXyzs11 = TranPts(transform1, ptXyzs1);
-                    XYZ[] ptXyzs22 = TranPts(transform1, ptXyzs2);
-                    Transform transform2 = Transform.CreateTranslation(new XYZ(0, 0, 2000 / 304.8));
-                    XYZ[] ptXyzs33 = TranPts(transform2, ptXyzs3);
-                    XYZ[] ptXyzs44 = TranPts(transform2, ptXyzs4);
+                    for (int j = 0; j < 6; j++)
+                    {
+                        XYZ[] pt1 = new XYZ[12];
+                        for (int k = 0; k < 3; k++) {
+                            pt1[k] = ptXyzs11[k+j*3];
+                        }
 
-                    TaskDialog.Show("TT!", ptXyzs3[0].ToString() + "\n" + ptXyzs33[0].ToString());
-                    XYZ[] pt1 = new XYZ[12];
-                    for (int k = 0; k < 3; k++) {
-                        pt1[k] = ptXyzs1[k];
+                        for (int l = 0; l < 3; l++) {
+                            pt1[l + 3] = ptXyzs22[l+j * 3];
+                        }
+
+                        for (int m = 0; m < 3; m++) {
+                            pt1[m + 6] = ptXyzs33[m + j * 3];
+                        }
+
+                        for (int nn = 0; nn < 3; nn++) {
+                            pt1[nn + 9] = ptXyzs44[nn + j * 3];
+                        }
+                        SimpelTunnel.CreateAdaptiveComponentFamily(pt1, GuanPian);
                     }
-
-                    for (int l = 0; l < 3; l++) {
-                        pt1[l + 3] = ptXyzs2[l];
-                    }
-
-                    for (int m = 0; m < 3; m++) {
-                        pt1[m + 6] = ptXyzs33[m];
-                    }
-
-                    for (int nn = 0; nn < 3; nn++) {
-                        pt1[nn + 9] = ptXyzs44[nn];
-                    }
-                    SimpelTunnel.CreateAdaptiveComponentFamily(pt1, GuanPian);
+                    
                 }
 
                 quWindow.Close();
-                TaskDialog.Show("OK", "模型生成完毕，耗时xxx秒!");
+
+                sw.Stop();
+                var time = sw.Elapsed;
+                TaskDialog.Show("OK", $"共耗时{time.TotalSeconds:f0}秒,生成{numOfGuanPian*6-6}个管片!");
             }
         }
 

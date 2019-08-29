@@ -55,7 +55,6 @@ namespace Tunnel {
                     ReferencePoint point = _doc.GetElement(placePointIds[i]) as ReferencePoint;
                     point.Position = pts[i];
                 }
-
                 tr.Commit();
             }
         }
